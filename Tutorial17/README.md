@@ -32,14 +32,14 @@ Welcome to Tutorial 17. Subgraphs allow you to embed a compiled LangGraph graph 
 #### Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial17
 ```
 
 #### Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial17
 ```
 

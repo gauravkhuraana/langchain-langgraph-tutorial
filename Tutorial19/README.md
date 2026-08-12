@@ -36,14 +36,14 @@ Welcome to Tutorial 19. LangGraph provides two complementary memory systems: per
 #### Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial19
 ```
 
 #### Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial19
 ```
 

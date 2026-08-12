@@ -3,39 +3,29 @@
 ## What you'll learn
 
 1. Performance Optimization:
-   - Caching strategies 
-   - Async processing
-   - Resource management
-   - Load balancing
+   - Async LCEL (`ainvoke`, `asyncio.gather`) for concurrent LLM calls
+   - When async actually helps vs. adds complexity
 
-2. API Management:
-   - Rate limiting
-   - Cost tracking
-   - Error handling
-   - Request throttling
+2. Handling Rate Limits and API Costs:
+   - Tracking token usage per call
+   - Basic strategies for staying within provider rate limits
 
-3. Security Implementation:
-   - Input validation
-   - Authentication
-   - Data encryption
-   - Secure deployment
+3. Security Considerations:
+   - Input validation before it reaches a prompt
+   - Not leaking secrets (API keys) into logs or prompts
 
-4. Production Deployment:
-   - FastAPI integration
-   - Container orchestration
-   - CI/CD pipelines
-   - Load balancing
+4. Deployment:
+   - Wrapping a LangChain/LangGraph app in a FastAPI endpoint
+   - Running it with `uvicorn`
 
 5. Monitoring & Logging:
-   - Metrics collection
-   - Error tracking
-   - Performance monitoring
-   - Alerting systems
+   - Exposing metrics with `prometheus-client`
+   - Basic structured logging for a production LLM service
 
 ## Prerequisites
 
 - Completion of Tutorials 1-12
-- Python 3.7+
+- Python 3.10+
 - Groq API key
 
 ## Getting Started
@@ -45,14 +35,14 @@
 #### Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial13
 ```
 
 #### Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial13
 ```
 
@@ -61,50 +51,33 @@ cd Tutorial13
 jupyter notebook Tutorial_13_best_practices_and_advanced_topics.ipynb
 ```
 
-## Components
+## What's Included
 
-### Core Files
 - `Tutorial_13_best_practices_and_advanced_topics.ipynb`: Main tutorial notebook
-- `utils/`: Helper functions
-- `examples/`: Production examples
 
 ### Key Features
 
-#### Performance Tools
-- Caching systems
-- Async handlers
-- Memory management
-- Load balancers
+#### Performance
+- Async LCEL chains and concurrent `ainvoke()` calls
 
-#### Security Features
-- Input validators
-- Auth systems
-- Encryption tools
-- Secure configs
+#### Cost & Rate-limit awareness
+- Reading token usage off LLM responses
+- Patterns for handling rate-limit errors gracefully
 
-#### Deployment Tools
-- API endpoints
-- Docker containers
-- CI/CD configs
-- Proxy setups
-
-#### Monitoring Systems
-- Prometheus metrics
-- Log handlers
-- Alert managers
-- Dashboard configs
+#### Deployment
+- A minimal FastAPI app serving a LangChain chain
+- Prometheus metrics endpoint for basic observability
 
 ## Next Steps
 
 After completing this tutorial:
-1. Implement production systems
-2. Deploy secure applications
-3. Set up monitoring
-4. Scale infrastructure
+1. Wrap your own chains/agents in a FastAPI service
+2. Add proper structured logging and metrics to a real project
+3. Continue to Tutorial 14: Human-in-the-Loop
 
 ## Additional Resources
 
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction.html)
+- [LangChain Documentation](https://docs.langchain.com/oss/python/langchain/overview)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [Prometheus Documentation](https://prometheus.io/docs/)
-- [Groq API Documentation](https://www.groq.com/docs/)
+- [Groq API Documentation](https://console.groq.com/docs)

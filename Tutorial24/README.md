@@ -38,14 +38,14 @@ Welcome to Tutorial 24. LangChain 1.0 (September 2025) introduced a middleware s
 #### Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial24
 ```
 
 #### Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial24
 ```
 

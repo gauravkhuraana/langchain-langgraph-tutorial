@@ -3,27 +3,27 @@
 ## What you'll learn
 
 1. Multi-step workflow design:
-   - Task planning and decomposition
-   - Sequential task execution
-   - Error handling and recovery
+   - Task planning and decomposition into graph nodes
+   - Sequential task execution across nodes
+   - Error handling and recovery paths
    - Result summarization
 
 2. State Management:
-   - Defining state structure with TypedDict
+   - Defining state structure with `TypedDict`
    - Managing transitions between steps
-   - Handling shared context
-   - Error count tracking
+   - Handling shared context across nodes
+   - Error count tracking in state
 
 3. Complex Workflow Implementation:
    - Custom node functions
-   - Conditional branching
+   - Conditional branching with `add_conditional_edges`
    - Error recovery paths
    - State persistence
 
 ## Prerequisites
 
 - Completion of Tutorials 1-7
-- Python 3.7+
+- Python 3.10+
 - Groq API key
 
 ## Getting Started
@@ -33,14 +33,14 @@
 #### Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial08
 ```
 
 #### Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial08
 ```
 
@@ -49,42 +49,36 @@ cd Tutorial08
 jupyter notebook Tutorial_8_complex_flows_langgraph.ipynb
 ```
 
-## Components
+## What's Included
 
-### Core Files
 - `Tutorial_8_complex_flows_langgraph.ipynb`: Main tutorial notebook
-- `utils/`: Helper functions for workflow
-- `examples/`: Sample flows and configurations
 
 ### Workflow Features
 
 #### Task Management
-- Task breakdown system
-- Subtask execution engine
-- Progress tracking
-- Task completion validation
+- Task breakdown into a multi-step graph
+- Sequential execution across nodes
+- Progress tracking via state
 
 #### Error Handling
-- Error detection and counting
-- Automatic retries
-- Fallback strategies
-- Recovery procedures
+- Error detection and counting in state
+- Conditional routing to a fallback/recovery node
+- Recovery procedures before returning to the main flow
 
 #### State Control
-- State definition using TypedDict
-- Transition management
-- Context preservation
-- Multi-step coordination
+- State definition using `TypedDict`
+- Transition management with conditional edges
+- Context preservation across the whole run
 
 ## Next Steps
 
 After completing this tutorial:
 1. Develop custom workflow patterns
 2. Implement domain-specific flows
-3. Design error handling strategies
-4. Create complex agent interactions
+3. Design your own error-handling strategies
+4. Continue to Tutorial 9: Combining LangChain and LangGraph
 
 ## Additional Resources
 
-- [LangGraph Documentation](https://python.langchain.com/docs/langgraph)
-- [Groq API Documentation](https://www.groq.com/docs/)
+- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
+- [Groq API Documentation](https://console.groq.com/docs)

@@ -4,32 +4,26 @@
 
 1. Pydantic Integration:
    - Data validation and modeling
-   - Type annotations
-   - Schema creation
-   - Custom validators
+   - Type annotations and `Field(description=...)`
+   - Schema creation for LLM outputs
 
-2. Structured I/O:
-   - Input validation
-   - Output parsing
-   - Type safety
-   - Error handling
+2. Structured Output:
+   - `.with_structured_output(Schema)` — the modern replacement for `PydanticOutputParser` + `LLMChain`
+   - `ToolStrategy` vs `ProviderStrategy` — how structured output actually works under the hood
+   - Type-safe, validated responses straight from the model
 
 3. JSON Processing:
-   - Complex data manipulation
-   - Schema validation
-   - Data transformation
-   - Query operations
+   - Answering questions about arbitrary JSON data with an LLM
+   - Generating format instructions/schemas from example data
 
 4. Application Integration:
-   - LangChain components
-   - LangGraph workflows
-   - Data persistence
-   - API development
+   - Combining Pydantic models with a `create_agent()` tool
+   - A structured movie-recommendation agent
 
 ## Prerequisites
 
 - Completion of Tutorials 1-10
-- Python 3.7+
+- Python 3.10+
 - Groq API key
 
 ## Getting Started
@@ -39,14 +33,14 @@
 #### Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial11
 ```
 
 #### Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial11
 ```
 
@@ -55,44 +49,33 @@ cd Tutorial11
 jupyter notebook Tutorial_11_structured_data.ipynb
 ```
 
-## Components
+## What's Included
 
-### Core Files
 - `Tutorial_11_structured_data.ipynb`: Main tutorial notebook
-- `utils/`: Helper functions
-- `examples/`: Sample implementations
 
 ### Key Features
 
 #### Data Modeling
-- Type validation
-- Schema definition
-- Model inheritance
-- Custom validators
+- Pydantic `BaseModel` classes with typed, described fields
+- Validation errors on malformed data
 
-#### Data Processing
-- Input parsing
-- Output formatting
-- Error handling
-- Data transformation
+#### Structured Output
+- `llm.with_structured_output(Schema)` for reliable typed responses
+- Wiring a Pydantic-returning function into a `create_agent()` tool
 
-#### Integration Tools
-- API connectivity
-- Database operations
-- State management
-- Workflow automation
+#### JSON Processing
+- Asking an LLM questions about a JSON dataset directly, no agent required
+- Auto-generating a format/schema description from example data
 
 ## Next Steps
 
 After completing this tutorial:
-1. Build type-safe applications
-2. Implement data validation
-3. Create structured workflows
-4. Develop API integrations
+1. Build type-safe applications with `.with_structured_output()`
+2. Combine structured output with agent tools
+3. Continue to Tutorial 12: Advanced LangChain Techniques
 
 ## Additional Resources
 
-- [Pydantic Documentation](https://pydantic-docs.helpmanual.io/)
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction.html)
-- [LangGraph Documentation](https://python.langchain.com/docs/langgraph)
-- [Groq API Documentation](https://www.groq.com/docs/)
+- [Pydantic Documentation](https://docs.pydantic.dev/)
+- [LangChain Structured Output docs](https://docs.langchain.com/oss/python/langchain/structured-output)
+- [Groq API Documentation](https://console.groq.com/docs)

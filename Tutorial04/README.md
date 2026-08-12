@@ -4,12 +4,12 @@ Welcome to the fourth tutorial in our LangChain and LangGraph series! In this tu
 
 ## What you'll learn
 
-1. Understanding the agent architecture in LangChain
-2. Exploring different types of agents:
-   - Zero-shot React Agent
-   - Conversational Agent
-   - Plan-and-Execute Agent
-3. Creating custom tools for agents
+1. Understanding the agent architecture, and how the agent-building API evolved: `initialize_agent()`/`AgentExecutor` (now in `langchain-classic`) → `langgraph.prebuilt.create_react_agent` (now deprecated) → `create_agent()` from the `langchain` package (current)
+2. Building agents with `create_agent()`:
+   - Zero-shot tool-using agent
+   - Conversational agent with a system prompt
+   - Plan-and-execute style agent
+3. Creating custom tools with `@tool` and `langchain_core.tools.Tool`
 4. Implementing a multi-tool agent for task solving
 
 ## Prerequisites
@@ -25,14 +25,14 @@ Welcome to the fourth tutorial in our LangChain and LangGraph series! In this tu
 #### For Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial04
 ```
 
 #### For Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial04
 ```
 
@@ -43,69 +43,36 @@ jupyter notebook Tutorial_4_Agents_in_LangChain.ipynb
 
 ## What's Included
 
-### Core Components
 - `Tutorial_4_Agents_in_LangChain.ipynb`: Main tutorial notebook
-- `tools/`: Custom tool implementations
-- `examples/`: Sample agent configurations
-- `README.md`: Documentation file
 
 ### Key Topics
 
-#### Agent Types
-- Zero-shot React Agent
-  - Dynamic tool selection
-  - Reasoning process
-  - Output formatting
-- Conversational Agent
-  - Memory management
-  - Context handling
-  - Response generation
-- Plan-and-Execute Agent
-  - Task decomposition
-  - Step sequencing
-  - Progress monitoring
+#### `create_agent()` basics
+- `model` + `tools` — the minimum needed to build an agent
+- `system_prompt` — customising agent behaviour
+- How the ReAct loop (reason → act → observe) runs under the hood
 
-#### Custom Tools
-- Tool creation framework
-- Input/output schemas
-- Error handling
-- Rate limiting
+#### Custom tools
+- `@tool`-decorated functions with docstrings the model reads as tool descriptions
+- `langchain_core.tools.Tool` for wrapping arbitrary callables
+- A DuckDuckGo web-search tool (via `langchain_community.tools.DuckDuckGoSearchRun`, backed by the `ddgs` package)
 
 ## Troubleshooting
 
 ### Common Issues
 
-1. **Agent Execution Problems**
-   - Tool availability checks
-   - Input validation
-   - Memory constraints
-   - Response parsing
-
-2. **Performance Optimization**
-   - Tool selection efficiency
-   - Memory management
-   - Response caching
-   - Error recovery
+1. **Agent doesn't call a tool you expect** — check the tool's docstring is descriptive; the model chooses tools based on it
+2. **Web search errors** — make sure `ddgs` is installed (`pip install -r requirements.txt`); DuckDuckGo's free endpoint can also rate-limit
+3. **Response parsing** — read `result["messages"][-1].content`, not the raw result dict
 
 ## Next Steps
 
 After completing this tutorial:
 1. Build custom agent architectures
 2. Develop specialized tools
-3. Implement complex workflows
-4. Prepare for Tutorial 5: Advanced Agent Techniques
-
-Stay tuned for Tutorial 5 where we'll explore:
-- Multi-agent systems
-- Agent orchestration
-- Complex decision trees
-- Advanced tool integration
+3. Continue to Tutorial 5: Advanced Agent Techniques, where we build a multi-tool research assistant with persistent memory
 
 ## Additional Resources
 
-- LangChain Agents Documentation
-- Tool Development Guide
-- Agent Architecture Patterns
-- Performance Optimization Tips
-
-Happy learning!
+- [LangChain Agents docs](https://docs.langchain.com/oss/python/langchain/agents)
+- [LangChain v1 migration guide](https://docs.langchain.com/oss/python/migrate/langchain-v1)

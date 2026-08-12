@@ -36,14 +36,14 @@ Welcome to Tutorial 23. LangChain v0.3 and the 1.0 release introduced a set of q
 #### Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial23
 ```
 
 #### Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial23
 ```
 

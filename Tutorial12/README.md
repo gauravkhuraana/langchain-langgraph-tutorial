@@ -3,33 +3,24 @@
 ## What you'll learn
 
 1. Custom Chain Development:
-   - Building specialized chains
-   - Chain composition
-   - State management
-   - Error handling
+   - Building a specialized processing step as a plain Python/LCEL-compatible class
+   - Composing steps with LCEL (`prompt | llm | parser`)
 
 2. Advanced Prompting:
-   - Template design
-   - Prompt optimization
-   - Response formatting
-   - Context management
+   - Multi-turn few-shot prompt templates with `ChatPromptTemplate.from_messages()`
+   - Context management across a templated conversation
 
 3. Retrieval-Augmented Generation:
-   - Vector stores
-   - Document retrieval
-   - Embedding models
-   - Result ranking
+   - FAISS vector store with a three-tier embeddings fallback (Ollama → HuggingFace → Fake)
+   - Document loading, splitting, and retrieval-augmented answering
 
-4. Model Fine-tuning:
-   - Task specialization
-   - Training strategies
-   - Performance tuning
-   - Evaluation methods
+4. "Fine-tuning" via prompting:
+   - Simulating task specialization (sentiment analysis) with a dedicated prompt, since the Groq-hosted models aren't fine-tunable here
 
 ## Prerequisites
 
 - Completion of Tutorials 1-11
-- Python 3.7+
+- Python 3.10+
 - Groq API key
 
 ## Getting Started
@@ -39,14 +30,14 @@
 #### Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial12
 ```
 
 #### Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial12
 ```
 
@@ -55,50 +46,34 @@ cd Tutorial12
 jupyter notebook Tutorial_12_advanced_langchain_techniques.ipynb
 ```
 
-## Components
+## What's Included
 
-### Core Files
 - `Tutorial_12_advanced_langchain_techniques.ipynb`: Main tutorial notebook
-- `utils/`: Helper functions
-- `examples/`: Sample implementations
+- `sample_document.txt`: Sample document used for the RAG section
 
 ### Key Features
 
 #### Chain Development
-- Custom chain creation
-- Chain composition
-- Output routing
-- Memory integration
-
-#### Prompt Engineering
-- Template systems
-- Few-shot learning
-- Context handling
-- Response validation
+- A custom LCEL-compatible processing class
+- Multi-turn prompt templates composed into an LCEL chain (replacing the deprecated `LLMChain`)
 
 #### RAG Implementation
-- Document processing
-- Vector indexing
-- Query optimization
-- Result ranking
+- `langchain_huggingface.HuggingFaceEmbeddings` as a local-embedding fallback tier (needs `sentence-transformers` installed to actually activate — otherwise the notebook falls back further to `FakeEmbeddings`)
+- FAISS similarity search feeding an LCEL RAG chain
 
-#### Fine-tuning Tools
-- Model adaptation
-- Performance metrics
-- Validation methods
-- Error analysis
+#### Prompt-based specialization
+- A dedicated sentiment-analysis prompt as a lightweight stand-in for fine-tuning
 
 ## Next Steps
 
 After completing this tutorial:
-1. Create complex chain architectures
-2. Implement advanced RAG systems
-3. Develop specialized models
-4. Build production applications
+1. Create more complex chain architectures
+2. Try the HuggingFace embeddings tier locally (`pip install sentence-transformers`)
+3. Continue to Tutorial 13: Best Practices and Advanced Topics
 
 ## Additional Resources
 
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction.html)
-- [Hugging Face Transformers](https://huggingface.co/transformers/)
+- [LangChain Documentation](https://docs.langchain.com/oss/python/langchain/overview)
+- [langchain-huggingface docs](https://python.langchain.com/docs/integrations/providers/huggingface/)
 - [FAISS Documentation](https://github.com/facebookresearch/faiss)
-- [Groq API Documentation](https://www.groq.com/docs/)
+- [Groq API Documentation](https://console.groq.com/docs)

@@ -4,10 +4,10 @@ Welcome to the third tutorial in our LangChain and LangGraph series! In this tut
 
 ## What you'll learn
 
-1. Loading and parsing different document types
+1. Loading and parsing different document types (`.txt`, `.pdf`)
 2. Text splitting and chunking strategies
-3. Building a simple question-answering system
-4. Implementing semantic search
+3. Building a simple question-answering system with an LCEL retrieval chain
+4. Implementing semantic search over your own documents
 
 ## Prerequisites
 
@@ -22,60 +22,54 @@ Welcome to the third tutorial in our LangChain and LangGraph series! In this tut
 #### For Linux/macOS:
 ```bash
 cd langchain-langgraph-tutorial
-source venv/bin/activate
+source .venv/bin/activate
 cd Tutorial03
 ```
 
 #### For Windows:
 ```cmd
 cd langchain-langgraph-tutorial
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 cd Tutorial03
 ```
-### Install Ollama for Embedding Generation
- From the website https://ollama.com/download - download the Ollama CLI and install it. Then run the following command to pull the minilm model.
 
-### Pull Ollama Models
-```bash 
+### 2. (Optional) Install Ollama for Embedding Generation
+
+The notebook prefers local Ollama embeddings and falls back to `FakeEmbeddings` (random vectors, for demo purposes) if Ollama isn't running — so this step is optional.
+
+Download the Ollama CLI from https://ollama.com/download, then pull the embedding model:
+```bash
 ollama pull all-minilm
 ```
 
-### 2. Launch Jupyter Notebook
+### 3. Launch Jupyter Notebook
 ```bash
 jupyter notebook Tutorial_3_Document_Processing.ipynb
 ```
 
 ## What's Included
 
-### Core Components
 - `Tutorial_3_Document_Processing.ipynb`: Main tutorial notebook
 - `sample_documents/`: Example documents for processing
-  - Text files (.txt)
-  - PDF documents (.pdf)
-  - Word documents (.docx)
-  - Markdown files (.md)
-- `utils/`: Helper functions for document processing
-- `README.md`: Documentation file
+  - `sample1.txt` — a plain-text document
+  - `sample2.pdf` — a PDF document
 
 ### Key Topics
 
 #### Document Loading
-- Different document formats support
-- Metadata extraction
-- Error handling strategies
-- Batch processing
+- `TextLoader` / `DirectoryLoader` for text files
+- `PyPDFLoader` for PDFs
+- All still the current, correct `langchain_community.document_loaders` location as of LangChain 1.0
 
 #### Text Processing
-- Chunking algorithms
-- Splitting strategies
-- Token management
-- Content preservation
+- `RecursiveCharacterTextSplitter` chunking
+- Chunk size and overlap tuning
 
 #### Search Implementation
-- Vector store setup
-- Embedding generation
-- Query processing
-- Result ranking
+- FAISS vector store setup
+- Embedding generation (Ollama, with a `FakeEmbeddings` fallback)
+- LCEL retrieval chain (the modern replacement for the deprecated `RetrievalQA`)
+- Direct `similarity_search()` for semantic search
 
 ## Troubleshooting
 
@@ -84,34 +78,22 @@ jupyter notebook Tutorial_3_Document_Processing.ipynb
 1. **Document Loading Errors**
    - File format compatibility
    - Encoding issues
-   - Memory constraints
    - Permission problems
 
-2. **Processing Challenges**
-   - Large document handling
-   - Special character management
-   - Language detection
-   - Metadata preservation
+2. **Embeddings**
+   - If Ollama isn't installed/running, the notebook automatically falls back to `FakeEmbeddings` — similarity search results will look random in that mode, which is expected
 
 ## Next Steps
 
 After completing this tutorial:
 1. Experiment with different document types
 2. Optimize chunking strategies
-3. Build custom document processors
-4. Prepare for Tutorial 4: Agents in LangChain
-
-Stay tuned for Tutorial 4 where we'll explore:
-- Agent architectures
-- Tool integration
-- Planning strategies
-- Multi-agent systems
+3. Continue to Tutorial 4: Agents in LangChain
 
 ## Additional Resources
 
-- LangChain Document Loaders Guide
-- Text Splitting Best Practices
-- Vector Store Documentation
-- Embedding Models Overview
+- [LangChain Document Loaders](https://docs.langchain.com/oss/python/integrations/document_loaders)
+- [LangChain Text Splitters](https://docs.langchain.com/oss/python/langchain/text-splitters)
+- [FAISS Documentation](https://github.com/facebookresearch/faiss)
 
 Happy learning!

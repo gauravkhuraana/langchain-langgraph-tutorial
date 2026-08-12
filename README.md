@@ -72,9 +72,12 @@ Create a `.env` file in the repo root:
 GROQ_API_KEY=your_groq_api_key_here
 
 # Optional — enables LangSmith tracing
-LANGCHAIN_TRACING_V2=false
-LANGCHAIN_API_KEY=your_langsmith_key_here
-LANGCHAIN_PROJECT=LangChainTutorial
+LANGSMITH_TRACING=false
+LANGSMITH_API_KEY=your_langsmith_key_here
+LANGSMITH_PROJECT=LangChainTutorial
+
+# Legacy alias names (LANGCHAIN_TRACING_V2 / LANGCHAIN_API_KEY / LANGCHAIN_PROJECT)
+# still work, but LangSmith's docs now lead with the LANGSMITH_* names above.
 ```
 
 ### 4. Open any tutorial
@@ -94,7 +97,7 @@ jupyter notebook Tutorial01/Tutorial_1_Introduction_to_LangChain.ipynb
 | 01 | **Introduction to LangChain** | LCEL, chains, prompts, first app |
 | 02 | **Working with Language Models** | `ChatGroq`, `PromptTemplate`, output parsers |
 | 03 | **Document Processing** | Loaders, text splitting, FAISS, Corrective RAG (CRAG) |
-| 04 | **Agents in LangChain** | `create_react_agent`, tool calling, multi-tool agents |
+| 04 | **Agents in LangChain** | `create_agent`, tool calling, multi-tool agents |
 | 05 | **Advanced Agent Techniques** | Vector search tools, memory agents, research assistant |
 | 06 | **Memory Systems** | `MemorySaver`, `InMemoryStore`, `add_messages`, summary memory |
 
