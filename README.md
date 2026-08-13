@@ -171,13 +171,18 @@ langchain-langgraph-tutorial/
 
 All tutorials use **[Groq](https://groq.com)** for fast LLM inference:
 
-| Tutorial | Model |
-|---|---|
-| 01 – 13, 15 – 21, 23 – 25 | `llama-3.1-8b-instant` |
-| 04 (agents), 05 (research) | `qwen/qwen3-32b` |
-| 22 (deep agents) | `qwen/qwen3-32b` |
+| Tutorial | Model | Why |
+|---|---|---|
+| 01 – 03, 06 – 14, 16 – 21, 23, 25 | `llama-3.1-8b-instant` | Fastest and cheapest; ample for chains, prompts and graph flows |
+| 04, 05, 15, 22, 24 | `llama-3.3-70b-versatile` | Agent tutorials — larger model gives markedly more reliable tool-calling and multi-agent routing |
 
-Both models are available on the **free Groq tier**. Switch to any other Groq model by changing the `model_name` in the setup cell of any notebook.
+Both models are available on the **free Groq tier**. Switch to any other Groq model by changing the `model_name` (or the `init_chat_model("groq:…")` string) in the setup cell of any notebook.
+
+> **Models get retired.** If a setup cell fails with `404 … model does not exist or you do not have access to it`, the model has been decommissioned rather than misconfigured — check [Groq's deprecations page](https://console.groq.com/docs/deprecations) for the current replacement. This happened to `qwen/qwen3-32b` and `meta-llama/llama-4-scout-17b-16e-instruct`, both shut down on 2026-07-17 and since replaced throughout these tutorials. To list what your own key can reach:
+>
+> ```bash
+> curl -s https://api.groq.com/openai/v1/models -H "Authorization: Bearer $GROQ_API_KEY"
+> ```
 
 ---
 

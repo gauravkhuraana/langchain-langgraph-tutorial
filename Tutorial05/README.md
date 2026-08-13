@@ -60,7 +60,7 @@ jupyter notebook Tutorial_5_Advanced_Agent_Techniques.ipynb
 
 1. **Vector store returns irrelevant results** — if Ollama isn't running, the notebook falls back to `FakeEmbeddings`, which produces random (not semantically meaningful) similarity — this is expected in that fallback mode, not a bug
 2. **Agent doesn't remember earlier turns** — make sure you're passing the same `thread_id` in the `config` on every `invoke()` call
-3. **Slow responses** — the research agent uses a larger model (`qwen/qwen3-32b`) for better tool-routing reliability
+3. **Slow responses** — the research agent uses a larger model (`llama-3.3-70b-versatile`) for better tool-routing reliability
 
 ## Next Steps
 
