@@ -66,10 +66,12 @@ jupyter notebook Tutorial_3_Document_Processing.ipynb
 - Chunk size and overlap tuning
 
 #### Search Implementation
-- FAISS vector store setup
+- `InMemoryVectorStore` (`langchain_core.vectorstores`) — a dependency-free vector store, ideal for a small demo corpus like this one
 - Embedding generation (Ollama, with a `FakeEmbeddings` fallback)
 - LCEL retrieval chain (the modern replacement for the deprecated `RetrievalQA`)
 - Direct `similarity_search()` for semantic search
+
+> **Why not FAISS?** `langchain_community.vectorstores.FAISS` is still current and worth knowing (see Tutorial 5/12), but it's a compiled native dependency (`faiss-cpu`) that adds approximate nearest-neighbor indexing — overkill for the couple of sample files here. `InMemoryVectorStore` ships in `langchain_core`, needs no extra install, and does exact brute-force search, which is all a small corpus needs.
 
 ## Troubleshooting
 
@@ -94,6 +96,6 @@ After completing this tutorial:
 
 - [LangChain Document Loaders](https://docs.langchain.com/oss/python/integrations/document_loaders)
 - [LangChain Text Splitters](https://docs.langchain.com/oss/python/langchain/text-splitters)
-- [FAISS Documentation](https://github.com/facebookresearch/faiss)
+- [LangChain Vector Stores](https://docs.langchain.com/oss/python/langchain/retrieval#vector-stores)
 
 Happy learning!

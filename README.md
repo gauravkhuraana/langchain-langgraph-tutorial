@@ -96,7 +96,7 @@ jupyter notebook Tutorial01/Tutorial_1_Introduction_to_LangChain.ipynb
 |---|---|---|
 | 01 | **Introduction to LangChain** | LCEL, chains, prompts, first app |
 | 02 | **Working with Language Models** | `ChatGroq`, `PromptTemplate`, output parsers |
-| 03 | **Document Processing** | Loaders, text splitting, FAISS, Corrective RAG (CRAG) |
+| 03 | **Document Processing** | Loaders, text splitting, `InMemoryVectorStore`, LCEL retrieval chain |
 | 04 | **Agents in LangChain** | `create_agent`, tool calling, multi-tool agents |
 | 05 | **Advanced Agent Techniques** | Vector search tools, memory agents, research assistant |
 | 06 | **Memory Systems** | `MemorySaver`, `InMemoryStore`, `add_messages`, summary memory |
