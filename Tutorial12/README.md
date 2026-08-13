@@ -60,6 +60,9 @@ jupyter notebook Tutorial_12_advanced_langchain_techniques.ipynb
 #### RAG Implementation
 - `langchain_huggingface.HuggingFaceEmbeddings` as a local-embedding fallback tier (needs `sentence-transformers` installed to actually activate — otherwise the notebook falls back further to `FakeEmbeddings`)
 - FAISS similarity search feeding an LCEL RAG chain
+- `RecursiveCharacterTextSplitter` for chunking — note that `CharacterTextSplitter` splits on `\n\n` by default, which the sample document never contains, so it would yield a single unsplittable chunk and defeat retrieval entirely
+
+> **Why FAISS here and not in Tutorials 3/5/9?** Those tutorials use `InMemoryVectorStore` from `langchain_core`: exact brute-force search, no native dependency, and entirely adequate for a handful of chunks. FAISS (`faiss-cpu`) adds approximate nearest-neighbor indexing, which is what you want once scanning every vector per query becomes the bottleneck. This tutorial keeps FAISS so you've seen the production-grade path; the two APIs are near-identical, so switching is a one-line change.
 
 #### Prompt-based specialization
 - A dedicated sentiment-analysis prompt as a lightweight stand-in for fine-tuning

@@ -5,7 +5,7 @@ Welcome to the fifth tutorial in our LangChain and LangGraph series! In this tut
 ## What you'll learn
 
 1. Building a specialized agent for scientific literature analysis
-2. Giving an agent a vector-search tool over your own documents (FAISS + Ollama/FakeEmbeddings)
+2. Giving an agent a vector-search tool over your own documents (`InMemoryVectorStore` + Ollama/FakeEmbeddings)
 3. Adding persistent, multi-turn memory to an agent with a `MemorySaver` checkpointer
 4. Composing a small real-world application (a research assistant) out of these pieces
 

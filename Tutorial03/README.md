@@ -71,7 +71,7 @@ jupyter notebook Tutorial_3_Document_Processing.ipynb
 - LCEL retrieval chain (the modern replacement for the deprecated `RetrievalQA`)
 - Direct `similarity_search()` for semantic search
 
-> **Why not FAISS?** `langchain_community.vectorstores.FAISS` is still current and worth knowing (see Tutorial 5/12), but it's a compiled native dependency (`faiss-cpu`) that adds approximate nearest-neighbor indexing — overkill for the couple of sample files here. `InMemoryVectorStore` ships in `langchain_core`, needs no extra install, and does exact brute-force search, which is all a small corpus needs.
+> **Why not FAISS?** `langchain_community.vectorstores.FAISS` is still current and worth knowing (it gets a dedicated section in Tutorial 12), but it's a compiled native dependency (`faiss-cpu`) that adds approximate nearest-neighbor indexing — overkill for the couple of sample files here. `InMemoryVectorStore` ships in `langchain_core`, needs no extra install, and does exact brute-force search, which is all a small corpus needs.
 
 ## Troubleshooting
 
