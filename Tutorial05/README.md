@@ -60,7 +60,7 @@ jupyter notebook Tutorial_5_Advanced_Agent_Techniques.ipynb
 
 1. **Vector store returns irrelevant results** — if Ollama isn't running, the notebook falls back to `FakeEmbeddings`, which produces random (not semantically meaningful) similarity — this is expected in that fallback mode, not a bug
 2. **Agent doesn't remember earlier turns** — make sure you're passing the same `thread_id` in the `config` on every `invoke()` call
-3. **Slow responses** — the research agent uses a larger model (`llama-3.3-70b-versatile`) for better tool-routing reliability
+3. **`429 rate_limit_exceeded` on tokens per day** — agent tutorials resend the full history and every tool schema on each loop iteration, so they consume the free tier's daily budget quickly. Limits are per-model, so switching `model_name` gives a fresh budget without waiting; `llama-3.1-8b-instant` (used here) has the largest at 500K tokens/day
 
 ## Next Steps
 

@@ -59,7 +59,9 @@ jupyter notebook Tutorial_3_Document_Processing.ipynb
 #### Document Loading
 - `TextLoader` / `DirectoryLoader` for text files
 - `PyPDFLoader` for PDFs
-- All still the current, correct `langchain_community.document_loaders` location as of LangChain 1.0
+- All three live in `langchain_community.document_loaders`, which is still the only place they exist — `langchain_core.document_loaders` ships base classes only (`BaseLoader`, `Blob`, `BlobLoader`), and there is no `langchain.document_loaders`
+
+> **Heads-up on `langchain-community`.** That package was sunset on 2026-05-22 and archived read-only on 2026-06-19, so importing from it emits a `DeprecationWarning`. It still works, and LangChain has deliberately named no replacement — the guidance is to adopt a maintained standalone package if one appears, or wrap the underlying library yourself. The loaders stay here because document loading is this tutorial's whole subject, and `PyPDFLoader` does real work wrapping `pypdf` with page splitting. Where loading is only incidental plumbing, hand-rolling it is cheaper than the dependency: Tutorial 5 builds `Document` objects straight from `pathlib` in four lines.
 
 #### Text Processing
 - `RecursiveCharacterTextSplitter` chunking

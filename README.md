@@ -173,10 +173,28 @@ All tutorials use **[Groq](https://groq.com)** for fast LLM inference:
 
 | Tutorial | Model | Why |
 |---|---|---|
-| 01 – 03, 06 – 14, 16 – 21, 23, 25 | `llama-3.1-8b-instant` | Fastest and cheapest; ample for chains, prompts and graph flows |
-| 04, 05, 15, 22, 24 | `llama-3.3-70b-versatile` | Agent tutorials — larger model gives markedly more reliable tool-calling and multi-agent routing |
+| 01 – 14, 16 – 25 | `llama-3.1-8b-instant` | Fast, cheap, and the largest free-tier daily budget (500K tokens/day) |
+| 15 (supervisor) | `llama-3.3-70b-versatile` | Multi-agent routing genuinely needs the stronger model — but see the quota warning below |
 
 Both models are available on the **free Groq tier**. Switch to any other Groq model by changing the `model_name` (or the `init_chat_model("groq:…")` string) in the setup cell of any notebook.
+
+### Watch the daily token budget
+
+Groq's free tier caps **tokens per day, per model** — and bigger models get *less*, not more:
+
+| Model | Tokens/min | **Tokens/day** |
+|---|---|---|
+| `llama-3.1-8b-instant` | 6K | **500,000** |
+| `openai/gpt-oss-120b` | 8K | 200,000 |
+| `llama-3.3-70b-versatile` | 12K | **100,000** |
+
+Agent tutorials (4, 5, 15, 22, 24) burn tokens far faster than the chain tutorials, because every loop iteration resends the full message history plus all tool schemas. Tutorial 15 is the heaviest of all. If you hit `429 … rate_limit_exceeded on tokens per day`, you have three options:
+
+1. **Switch model** — limits are per-model, so moving to `llama-3.1-8b-instant` gives a fresh budget immediately, with no waiting.
+2. **Wait** — the error message tells you exactly how long the window has left.
+3. **Upgrade** to Groq's Dev tier.
+
+Cached tokens don't count toward the limits, so re-running an unchanged setup cell is cheaper than the first run.
 
 > **Models get retired.** If a setup cell fails with `404 … model does not exist or you do not have access to it`, the model has been decommissioned rather than misconfigured — check [Groq's deprecations page](https://console.groq.com/docs/deprecations) for the current replacement. This happened to `qwen/qwen3-32b` and `meta-llama/llama-4-scout-17b-16e-instruct`, both shut down on 2026-07-17 and since replaced throughout these tutorials. To list what your own key can reach:
 >
